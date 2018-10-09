@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    version = "1.4.0"
+    version = "1.5.0"
   }
   stages {
     stage('Build') {
@@ -12,7 +12,7 @@ pipeline {
     stage('Deploy') {
       steps {
         sh '/Users/aravind.nambi/Library/Python/2.7/bin/eb deploy Test-env-1 -l hello-world-${version}'
-        sh 'sleep 10s'
+        sh 'sleep 30s'
       }
     }
     stage('Integration test') {

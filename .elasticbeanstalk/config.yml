@@ -2,7 +2,7 @@ branch-defaults:
   master:
     environment: Test-env-1
 deploy:
-  artifact: /Users/aravind.nambi/dev/projects/hello-world/build/libs/hello-world-1.0.0.war
+  artifact: /Users/aravind.nambi/dev/projects/hello-world/build/libs/hello-world-1.3.0.war
 environment-defaults:
   Test-env:
     branch: null

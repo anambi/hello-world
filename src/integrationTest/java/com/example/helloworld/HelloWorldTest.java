@@ -13,7 +13,7 @@ public class HelloWorldTest {
         get("http://test-env-1.jvv4dzm6jh.us-west-2.elasticbeanstalk.com/").
     then().
         statusCode(200).
-        body(containsString("Hello World"));
+        body(containsString("Hello World1"));
   }
 
 }

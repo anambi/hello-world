@@ -1,10 +1,23 @@
 pipeline {
   agent any
+  environment {
+    version = "1.2.0"
+  }
   stages {
     stage('Build') {
       steps {
-        sh './gradlew clean build'
+        sh './gradlew clean build -Pversion=${version}'
       }
     }
+    stage('Deploy') {
+      steps {
+        sh '/Users/aravind.nambi/Library/Python/2.7/bin/eb deploy Test-env-1 -l hello-world-${version}'
+      }
+    }
+    stage('Integration test') {
+        steps {
+          sh './gradlew integrationTest'
+        }
+      }
   }
 }

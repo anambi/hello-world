@@ -15,6 +15,7 @@ pipeline {
         timeout(time: 20, unit: 'MINUTES')
       }
       steps {
+        echo '/Users/aravind.nambi/Library/Python/2.7/bin/eb deploy ${qa_env} hello-world-${version}'
         sh '/Users/aravind.nambi/Library/Python/2.7/bin/eb deploy ${qa_env} hello-world-${version}'
         sh 'sleep 30s'
       }
@@ -34,10 +35,5 @@ pipeline {
             echo 'Deploy to prod'
         }
     }
-  }
-  post {
-      failure {
-          error 'failed'
-      }
   }
 }

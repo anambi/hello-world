@@ -11,12 +11,21 @@ pipeline {
       }
     }
     stage('QA Deploy') {
+      input {
+          message "Approve?"
+          ok "Yes"
+          //submitter "anambi"
+      }
+      steps {
+          echo 'Deploy to QA'
+      }
+    }
+    stage('QA Deploy') {
       options {
         timeout(time: 20, unit: 'MINUTES')
       }
       steps {
-        echo '/Users/aravind.nambi/Library/Python/2.7/bin/eb deploy ${qa_env} hello-world-${version}'
-        sh '/Users/aravind.nambi/Library/Python/2.7/bin/eb deploy ${qa_env} hello-world-${version}'
+        sh '/Users/aravind.nambi/Library/Python/2.7/bin/eb deploy ${qa_env} -l hello-world-${version}'
         sh 'sleep 30s'
       }
     }

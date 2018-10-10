@@ -19,11 +19,6 @@ pipeline {
         sh 'sleep 30s'
       }
     }
-    post {
-        failure {
-            error 'failed'
-        }
-    }
     stage('Integration test') {
         steps {
           sh './gradlew integrationTest'
@@ -39,5 +34,10 @@ pipeline {
             echo 'Deploy to prod'
         }
     }
+  }
+  post {
+      failure {
+          error 'failed'
+      }
   }
 }

@@ -10,16 +10,6 @@ pipeline {
         sh './gradlew clean build -Pversion=${version}'
       }
     }
-    stage('Approve QA Deploy') {
-      input {
-          message "Approve?"
-          ok "Yes"
-          //submitter "anambi"
-      }
-      steps {
-          echo 'Deploy to QA'
-      }
-    }
     stage('QA Deploy') {
       options {
         timeout(time: 20, unit: 'MINUTES')
@@ -27,6 +17,8 @@ pipeline {
       steps {
         sh '/Users/aravind.nambi/Library/Python/2.7/bin/eb deploy ${qa_env} -l hello-world-${version}'
         sh 'sleep 30s'
+        //sh 'date +"%Y-%m-%dT%T"'
+        //sh "aws elasticbeanstalk describe-events --environment-name ${qa_env} --start-time 2018-10-04T16:01:34 | grep 'New application version was deployed to running EC2 instance'"
       }
     }
     stage('Integration test') {

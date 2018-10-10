@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     version = "1.6.0"
-    qa-env = "Test-env-1"
+    qa_env = "Test-env-1"
   }
   stages {
     stage('Build') {
@@ -15,7 +15,7 @@ pipeline {
         timeout(time: 20, unit: 'MINUTES')
       }
       steps {
-        sh '/Users/aravind.nambi/Library/Python/2.7/bin/eb deploy ${qa-env} hello-world-${version}'
+        sh '/Users/aravind.nambi/Library/Python/2.7/bin/eb deploy ${qa_env} hello-world-${version}'
         sh 'sleep 30s'
       }
     }

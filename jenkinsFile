@@ -10,7 +10,7 @@ pipeline {
         sh './gradlew clean build -Pversion=${version}'
       }
     }
-    stage('QA Deploy') {
+    stage('Approve QA Deploy') {
       input {
           message "Approve?"
           ok "Yes"

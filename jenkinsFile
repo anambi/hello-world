@@ -3,8 +3,19 @@ pipeline {
   environment {
     version = "1.6.0"
     qa_env = "Test-env-1"
+    prod_env = ""
   }
   stages {
+   stage('Prod Deploy') {
+          input {
+              message "Approve?"
+              ok "Yes"
+              //submitter "anambi"
+          }
+          steps {
+              echo 'Deploy to prod'
+          }
+    }
     stage('Build') {
       steps {
         sh './gradlew clean build -Pversion=${version}'
@@ -26,15 +37,11 @@ pipeline {
           sh './gradlew integrationTest'
         }
     }
-    stage('Prod Deploy') {
-        input {
-            message "Approve?"
-            ok "Yes"
-            //submitter "anambi"
-        }
-        steps {
-            echo 'Deploy to prod'
-        }
+
+  }
+  post {
+    failure {
+      email:
     }
   }
 }
